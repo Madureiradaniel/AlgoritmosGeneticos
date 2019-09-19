@@ -1,12 +1,19 @@
 from random import randint
 
-#cria um individuo aleatorio, ou seja fala se contem um item ou nao na mochila
 class Individuo(object):
 
     def __init__(self,itens):
-
         self.pack = []
+        self.fitness = 0
+
+        #gera random qual item leva no pack(mochila)
         for item in itens:
-            self.cromossomo = randint(0,1)
-            self.pack.append([item,self.cromossomo])
+            cromossomo = randint(0,1)
+            self.pack.append([item,cromossomo])
+
+        for item in self.pack:
+            if item[1] == 1:
+                self.fitness += int(item[0].peso)
+
+
 

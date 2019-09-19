@@ -6,3 +6,4 @@ apontador,25,11
 caneta,40,3
 corretivo,45,2
 Cola,32,3
+tablet,55,6

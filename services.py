@@ -18,10 +18,15 @@ class Services(object):
 
     #retorna uma populacao com itens dizendo se tem ou nao na mochila
     def gerarPopulacao(self,itens,qtdInicialDeIndividuos):
-
         self.populacao = []
         for i in range(qtdInicialDeIndividuos):
-            self.individuo = Individuo(itens)
-            self.populacao.append(self.individuo.pack)
-
+            self.individuo =  Individuo(itens)
+            self.populacao.append(self.individuo)
         return self.populacao
+
+    def mostrarPopulacao(self,populacao):
+        cont = 1
+        for individuo in populacao:
+            print("Individuo: "+str(cont)+" itens: " + str(individuo.pack) + " Fitness(Peso Total): " + str(individuo.fitness))
+            cont += 1
+

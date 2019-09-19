@@ -9,6 +9,8 @@ def main():
     itens = servicos.lerItens()
     populacao = servicos.gerarPopulacao(itens,qtdInicialDeIndividuos)
 
+    servicos.mostrarPopulacao(populacao)
+
 
 if __name__ == "__main__":
     main()
