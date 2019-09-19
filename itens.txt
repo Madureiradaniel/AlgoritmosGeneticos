@@ -1,0 +1,8 @@
+lapis,20,1
+caderno,10,2
+notebook,50,12
+celular,10,10
+apontador,25,11
+caneta,40,3
+corretivo,45,2
+Cola,32,3
