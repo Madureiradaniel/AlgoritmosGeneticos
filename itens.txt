@@ -1,6 +1,6 @@
 lapis,20,1
 caderno,10,2
-notebook,50,12
+notebook,50,10
 celular,10,10
 apontador,25,11
 caneta,40,3

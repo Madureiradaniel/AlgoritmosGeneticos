@@ -41,13 +41,6 @@ class Services(object):
 
         return populacao
 
-    def criterioParada(self,populacao):
-        return None
-
-
-
-    def selecao(self):
-        return None
 
     #reproducao aleatoria
     def reproducao(self,populacao,taxaReproducao):
@@ -63,10 +56,10 @@ class Services(object):
 
         individuosSelecionados = []
         for i in range(qtdIndividuos):
-            individuosSelecionados.append(populacao[randint(1,len(populacao)-1)])
+            individuosSelecionados.append(populacao[randint(1,qtdIndividuos)])
 
 
-        ponto = randint(1,len(individuosSelecionados[0].pack) -1)
+        ponto = randint(1,len(individuosSelecionados[0].pack))
         print("Ponto do Cruzamento: " + str(ponto))
 
         print("= = = = = CRUZAMENTO = = = = =")
@@ -78,21 +71,41 @@ class Services(object):
                 print("========pais=======")
                 print(individuosSelecionados[individuo].pack)
                 print(individuosSelecionados[individuo - 1].pack)
-                individuosSelecionados[individuo].pack[ponto:] = individuosSelecionados[individuo - 1].pack[:ponto]
-                individuosSelecionados[individuo].pack[:ponto] = individuosSelecionados[individuo - 1].pack[ponto:]
+                for p in range(ponto):
+                   individuosSelecionados[individuo].pack[p] = individuosSelecionados[individuo - 1].pack[p]
+                   individuosSelecionados[individuo - 1].pack[p] = individuosSelecionados[individuo].pack[p]
 
                 print("========Filho======")
-                filho = individuosSelecionados[individuo]
-                filho.calculaFitness()
-                print(filho.pack)
-
-                populacao.append(filho)
+                print(individuosSelecionados[individuo].pack)
+                individuosSelecionados[individuo].calculaFitness()
+                populacao.append(individuosSelecionados[individuo])
 
         return populacao
 
+    def mutacao(self,populacao):
 
-    def mutacao(self):
-        return None
+        ponto = randint(0,5)
+
+        individuoEscolhido = populacao[randint(1,(len(populacao) - 1))]
+
+        if individuoEscolhido.pack[ponto][1] == 0:
+            individuoEscolhido.pack[ponto][1] = 1
+        else: individuoEscolhido.pack[ponto][1] = 0
+
+        individuoEscolhido.calculaFitness()
+
+        return populacao
+
+    def criterioParada(self,populacao,criterioParada, capacidadeMochila, melhorBenefico):
+
+        for individuo in populacao:
+            if individuo.fitness == capacidadeMochila:
+                print("************Otima solucao************")
+                print(str(individuo.pack) + "Fitness: " + str(individuo.fitness) +"Beneficio: " + str(individuo.beneficio) )
+                criterioParada = 0
+                break
+
+        return criterioParada
 
 
     def mostrarPopulacao(self,populacao):

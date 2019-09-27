@@ -13,6 +13,8 @@ class Individuo(object):
             self.pack.append([item,cromossomo])
 
     def calculaFitness(self):
+        self.fitness = 0
+        self.beneficio = 0
         for item in self.pack:
             if item[1] == 1:
                 self.fitness += int(item[0].peso)
